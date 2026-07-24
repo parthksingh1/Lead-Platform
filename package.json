@@ -10,8 +10,7 @@
     "build": "cd client && npm run build",
     "start": "cd server && npm start",
     "test": "cd server && npm test",
-    "seed": "cd server && node src/seed.js",
-    "postinstall": "npm install --prefix server && npm install --prefix client && npm run build"
+    "seed": "cd server && node src/seed.js"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

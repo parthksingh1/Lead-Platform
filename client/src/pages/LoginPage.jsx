@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
-import { Mail, Lock, User, ArrowRight, AlertCircle, CheckCircle, Shield } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, AlertCircle, CheckCircle, Shield, Sparkles, Check } from 'lucide-react';
 
 export default function LoginPage() {
   const { login, user } = useAuth();
@@ -61,46 +61,52 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#090D16] px-4 font-sans relative overflow-hidden">
-      {/* Subtle top spotlight */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="w-full max-w-[460px] z-10 py-10">
-        {/* Logo/Brand Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-neutral-800 to-neutral-900 border border-neutral-700/50 shadow-inner mb-4">
-            <Shield className="w-5 h-5 text-amber-500" />
-          </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">LeadFlow</h1>
-          <p className="text-sm text-slate-400 mt-2">
-            {isRegisterMode ? 'Register a new operator profile' : 'Sign in to access your dashboard'}
-          </p>
+    <div className="min-h-screen flex bg-[#FAF8F5] font-sans selection:bg-neutral-200">
+      
+      {/* Left Column: Form Panel (Cream/Off-White) */}
+      <div className="flex-1 flex flex-col justify-between p-8 sm:p-12 lg:p-16 max-w-full lg:max-w-[55%]">
+        
+        {/* Brand Header */}
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-6 bg-neutral-900 rounded-sm" />
+          <span className="text-lg font-bold tracking-tight text-neutral-900">LeadFlow</span>
         </div>
 
-        {/* Card */}
-        <div className="bg-[#111724]/85 backdrop-blur-md rounded-2xl border border-slate-800/80 p-10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]">
+        {/* Form Container */}
+        <div className="w-full max-w-[400px] mx-auto my-12">
+          <div className="mb-8">
+            <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+              {isRegisterMode ? 'Get started' : 'Welcome back'}
+            </h2>
+            <p className="text-sm text-neutral-500 mt-2 font-medium">
+              {isRegisterMode 
+                ? 'Create an account to begin tracking leads.' 
+                : 'Sign in to access your enterprise dashboard.'}
+            </p>
+          </div>
+
           {error && (
-            <div className="mb-6 p-4 bg-red-950/20 border border-red-900/30 text-red-400 rounded-xl text-sm flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
-              <span className="leading-relaxed">{error}</span>
+            <div className="mb-6 p-4 bg-neutral-100 border border-neutral-200 text-neutral-800 rounded-xl text-xs flex items-start gap-3">
+              <AlertCircle className="w-4 h-4 text-neutral-600 mt-0.5 shrink-0" />
+              <span className="leading-relaxed font-medium">{error}</span>
             </div>
           )}
 
           {success && (
-            <div className="mb-6 p-4 bg-emerald-950/20 border border-emerald-900/30 text-emerald-400 rounded-xl text-sm flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 shrink-0" />
-              <span className="leading-relaxed">{success}</span>
+            <div className="mb-6 p-4 bg-neutral-100 border border-neutral-200 text-neutral-850 rounded-xl text-xs flex items-start gap-3">
+              <CheckCircle className="w-4 h-4 text-neutral-700 mt-0.5 shrink-0" />
+              <span className="leading-relaxed font-medium">{success}</span>
             </div>
           )}
 
-          <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-6">
+          <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-5">
             {isRegisterMode && (
               <div>
-                <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                <label htmlFor="name" className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                   Full Name
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500">
+                  <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400">
                     <User className="w-4 h-4" />
                   </span>
                   <input
@@ -109,7 +115,7 @@ export default function LoginPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full pl-11 pr-4 py-3 bg-[#0B0F19] border border-slate-850 rounded-xl text-sm text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 outline-none transition-all placeholder:text-slate-650"
+                    className="w-full pl-9 pr-4 py-2.5 bg-[#FCFBF8] border border-neutral-200 rounded-xl text-sm text-neutral-900 focus:border-neutral-950 outline-none transition-all placeholder:text-neutral-400"
                     placeholder="Jane Doe"
                   />
                 </div>
@@ -117,11 +123,11 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+              <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400">
                   <Mail className="w-4 h-4" />
                 </span>
                 <input
@@ -130,18 +136,18 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full pl-11 pr-4 py-3 bg-[#0B0F19] border border-slate-850 rounded-xl text-sm text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 outline-none transition-all placeholder:text-slate-650"
+                  className="w-full pl-9 pr-4 py-2.5 bg-[#FCFBF8] border border-neutral-200 rounded-xl text-sm text-neutral-900 focus:border-neutral-950 outline-none transition-all placeholder:text-neutral-400"
                   placeholder="you@company.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+              <label htmlFor="password" className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400">
                   <Lock className="w-4 h-4" />
                 </span>
                 <input
@@ -150,7 +156,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full pl-11 pr-4 py-3 bg-[#0B0F19] border border-slate-850 rounded-xl text-sm text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 outline-none transition-all placeholder:text-slate-650"
+                  className="w-full pl-9 pr-4 py-2.5 bg-[#FCFBF8] border border-neutral-200 rounded-xl text-sm text-neutral-900 focus:border-neutral-950 outline-none transition-all placeholder:text-neutral-400"
                   placeholder="••••••••"
                 />
               </div>
@@ -159,57 +165,91 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2.5 py-3.5 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-500/55 text-neutral-950 rounded-xl text-sm font-bold transition-all duration-150 shadow-lg shadow-amber-500/10 hover:shadow-amber-500/20 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 bg-neutral-900 hover:bg-neutral-800 disabled:bg-neutral-900/60 text-white rounded-xl text-xs font-bold transition-all duration-150 shadow-sm cursor-pointer"
             >
               <span>{loading ? 'Processing...' : (isRegisterMode ? 'Create Account' : 'Sign In')}</span>
-              {!loading && <ArrowRight className="w-4 h-4" />}
+              {!loading && <ArrowRight className="w-3.5 h-3.5" />}
             </button>
           </form>
 
-          {/* Toggle Link */}
-          <div className="mt-6 text-center">
+          {/* Toggle */}
+          <div className="mt-5 text-center">
             <button
               type="button"
               onClick={toggleMode}
-              className="text-xs text-slate-400 hover:text-amber-500 transition-colors font-medium underline underline-offset-4"
+              className="text-xs text-neutral-500 hover:text-neutral-950 transition-colors font-medium underline underline-offset-4"
             >
               {isRegisterMode ? 'Already have an account? Sign in' : "Don't have an account? Sign up"}
             </button>
           </div>
-
-          {/* Demo Section */}
-          {!isRegisterMode && (
-            <div className="mt-8 pt-8 border-t border-slate-800/80">
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-3">Operator Demo Credentials</p>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[#0B0F19] border border-slate-850/50 text-xs">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-slate-300 truncate">admin@leadplatform.com</p>
-                    <p className="text-[10px] text-slate-500 mt-0.5">Password: admin12345</p>
-                  </div>
-                  <span className="px-2 py-0.5 text-[9px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-md shrink-0">
-                    Admin
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[#0B0F19] border border-slate-850/50 text-xs">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-slate-300 truncate">member@leadplatform.com</p>
-                    <p className="text-[10px] text-slate-500 mt-0.5">Password: member12345</p>
-                  </div>
-                  <span className="px-2 py-0.5 text-[9px] font-semibold bg-slate-800 text-slate-400 border border-slate-700/30 rounded-md shrink-0">
-                    Member
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
-        <p className="text-center text-[10px] text-slate-600 mt-8">
-          <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-slate-400 transition-colors">
-            Built for Digital Heroes Training Task
-          </a>
+        {/* Footer */}
+        <p className="text-[10px] text-neutral-400 font-medium">
+          &copy; {new Date().getFullYear()} LeadFlow. All rights reserved.
         </p>
+      </div>
+
+      {/* Right Column: Premium Sidebar Panel (Dark Charcoal) */}
+      <div className="hidden lg:flex flex-1 bg-[#121316] p-16 flex-col justify-between text-white relative overflow-hidden">
+        {/* Subtle mesh details */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#1f2128,transparent)] opacity-60" />
+        
+        {/* Nice visual detail: Mock Pipeline Widget */}
+        <div className="relative z-10 max-w-md my-auto space-y-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-850/50 border border-neutral-800 text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">
+            <Sparkles className="w-3 h-3" /> Live Pipeline Funnel
+          </div>
+          
+          <div className="space-y-4">
+            <h3 className="text-3xl font-extrabold tracking-tight leading-tight">
+              Enterprise client tracking, simplified.
+            </h3>
+            <p className="text-sm text-neutral-400 leading-relaxed font-medium">
+              Monitor customer pathways, transition statuses dynamically, and collaborate with team members on a unified CRM workspace.
+            </p>
+          </div>
+
+          {/* Decorative Preview Grid */}
+          <div className="space-y-3 bg-[#17181c]/80 border border-neutral-800 p-6 rounded-2xl shadow-xl backdrop-blur-sm">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-2">Recent Deal Activity</p>
+            
+            <div className="flex items-center justify-between p-3 bg-neutral-900/60 border border-neutral-800 rounded-xl">
+              <div>
+                <p className="text-xs font-bold text-slate-200">Acme Corporation</p>
+                <p className="text-[10px] text-slate-500 mt-0.5">Enterprise deal negotiation</p>
+              </div>
+              <span className="px-2 py-0.5 text-[9px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-md">
+                Proposal
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between p-3 bg-neutral-900/60 border border-neutral-800 rounded-xl">
+              <div>
+                <p className="text-xs font-bold text-slate-200">Stripe Integration</p>
+                <p className="text-[10px] text-slate-500 mt-0.5">Assigned to Member User</p>
+              </div>
+              <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded-md">
+                Won
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Demo info on the right sidebar footer */}
+        <div className="relative z-10 border-t border-neutral-850 pt-6">
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2.5">Quick Demo Logins</p>
+          <div className="grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <p className="font-semibold text-neutral-350">Admin Operator</p>
+              <p className="text-[10px] text-neutral-500">admin@leadplatform.com / admin12345</p>
+            </div>
+            <div>
+              <p className="font-semibold text-neutral-350">Member Operator</p>
+              <p className="text-[10px] text-neutral-500">member@leadplatform.com / member12345</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

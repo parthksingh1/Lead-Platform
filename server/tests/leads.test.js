@@ -160,7 +160,7 @@ describe('Lead Endpoints', () => {
         .send({ assignedTo: member._id });
 
       expect(res.status).toBe(200);
-      expect(res.body.data.lead.assignedTo._id).toBe(member._id.toString());
+      expect(res.body.data.lead.assignedTo.id).toBe(member._id.toString());
     });
 
     it('member should NOT be able to assign leads', async () => {

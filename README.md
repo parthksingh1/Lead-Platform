@@ -198,31 +198,7 @@ npm run test:coverage   # With coverage report
 
 ---
 
-## Deployment
 
-### Backend (Render)
-
-1. Create a new Web Service, connect your GitHub repo
-2. Build command: `cd server && npm install`
-3. Start command: `cd server && npm start`
-4. Set environment variables: `MONGO_URI`, `JWT_SECRET`, `CORS_ORIGIN`, `NODE_ENV=production`
-
-### Frontend (Vercel)
-
-1. Import repo, set root directory to `client`
-2. Set `VITE_API_URL` environment variable to your Render backend URL + `/api`
-3. Deploy
-
-### Alternative: Single Server
-
-The Express server serves the React build in production mode:
-
-```bash
-cd client && npm run build   # Outputs to client/dist
-cd ../server && npm start    # Serves API + static files
-```
-
----
 
 ## Project Structure
 

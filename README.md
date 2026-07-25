@@ -2,7 +2,7 @@
 
 A full-stack lead management application built for small sales teams, with role-based access control, a lead pipeline, timestamped notes, and a complete activity trail.
 
-**[Live Demo →](YOUR_DEPLOYED_URL_HERE)**
+**[Live Demo →](https://lead-platform-pi.vercel.app/)**
 
 Built for Digital Heroes Training Task · [digitalheroesco.com](https://digitalheroesco.com)
 
